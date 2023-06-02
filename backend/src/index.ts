@@ -3,7 +3,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { PrismaClient } from "@prisma/client";
 import fetch from "node-fetch";
-import { env } from "../environment";
+import { env } from "../../environment";
 import resolvers from "./graphql/resolvers";
 import typeDefs from "./graphql/typeDefs";
 
@@ -25,9 +25,10 @@ const main = async () => {
   });
 
   const prisma = new PrismaClient();
-  const PORT = 4000;
-
-  const { url } = await startStandaloneServer(server, {
+  const PORT = process.env.PORT || 4000;
+  
+  
+  const { url } = await startStandaloneServer<MyContext>(server, {
     context: async ({ req, res }) => {
       const accessToken = await fetch(
         "https://accounts.spotify.com/api/token",
@@ -53,7 +54,7 @@ const main = async () => {
       };
     },
 
-    listen: { port: PORT },
+     listen: { port: Number(PORT) || 4000 },
   });
   console.log(`🚀  Server ready at: ${url}`);
 };
