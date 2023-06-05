@@ -1,5 +1,15 @@
 import { PrismaClient } from "@prisma/client";
-import { Sponsor } from "../../../cms/src/utils/types";
+
+export interface Sponsor {
+  name: string;
+  url: string;
+  promoCode: string;
+  image: string;
+  baseUrl: string;
+  category: string;
+  offer: string;
+  summary: string;
+}
 
 export interface GraphQLContext {
   prisma: PrismaClient;
@@ -57,6 +67,7 @@ export interface SpotifyAPI {
 interface SpotifyAPIData {
   podcast: string;
   id: number;
+  offset: number;
 }
 
 export interface SponsorCategory {

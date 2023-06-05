@@ -222,11 +222,11 @@ export const podcastResolvers = {
       { input }: SpotifyAPI,
       context: GraphQLContext
     ) => {
-      const { accessToken, prisma } = context;
-      const { podcast } = input;
+      const { accessToken } = context;
+      const { podcast, offset } = input;
       try {
         const result = await fetch(
-          `https://api.spotify.com/v1/search?q=${podcast}&type=show&market=US&limit=1`,
+          `https://api.spotify.com/v1/search?q=${podcast}&type=show&market=US&offset=${offset}&limit=1`,
           {
             method: "GET",
             headers: { Authorization: "Bearer " + accessToken },

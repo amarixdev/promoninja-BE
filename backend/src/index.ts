@@ -26,8 +26,7 @@ const main = async () => {
 
   const prisma = new PrismaClient();
   const PORT = process.env.PORT || 4000;
-  
-  
+
   const { url } = await startStandaloneServer<MyContext>(server, {
     context: async ({ req, res }) => {
       const accessToken = await fetch(
@@ -54,7 +53,7 @@ const main = async () => {
       };
     },
 
-     listen: { port: Number(PORT) || 4000 },
+    listen: { port: Number(PORT) || 4000 },
   });
   console.log(`🚀  Server ready at: ${url}`);
 };

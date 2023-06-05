@@ -37,6 +37,7 @@ const typeDefs = gql`
 
   input SpotifyAPI {
     podcast: String
+    offset: Int
   }
 
   type Items {
