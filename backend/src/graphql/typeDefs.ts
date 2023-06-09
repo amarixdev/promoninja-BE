@@ -15,20 +15,20 @@ const typeDefs = gql`
     getCategoryPodcasts(input: String!): [Podcast]
     getTopPicks(input: TopPicksInput!): [Podcast]
     getTrendingOffers(input: TrendingOffersInput!): [Sponsor]
-    fetchCategory(input: PodcastInput!): String
     getPodcastCategories: [Category]
+    getSponsorsCount(input: CountInput!): Int
     fetchSponsors(input: PodcastInput!): [Sponsor]
+    fetchCategory(input: PodcastInput!): String
     fetchSpotifyPodcast(input: SpotifyAPI!): [Items]
     fetchCategoryPodcasts(input: PodcastInput!): [Podcast]
-    getSponsorsCount(input: CountInput!): Int
   }
 
   type Mutation {
     createPodcast(input: PodcastInput!): Boolean
+    createSponsor(input: PodcastInput!): Boolean
     updateCategory(input: UpdateCategoryInput!): Boolean
     updateColor(input: PodcastInput!): Boolean
     updateOffers(input: PodcastInput!): Boolean
-    createSponsor(input: PodcastInput!): Boolean
     updateSponsor: Boolean
     deletePodcastSponsor(input: DeleteInput): Boolean
     deleteSponsor(input: DeleteInput): Boolean
